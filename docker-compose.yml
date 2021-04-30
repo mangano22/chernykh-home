@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/php-fpm/Dockerfile
+    volumes:
+      - .:/var/www
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+      - 81:80
+    links:
+      - backend
