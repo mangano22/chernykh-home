@@ -1,3 +1,5 @@
 FROM nginx
 
-COPY docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+ADD docker/nginx/default.template /etc/nginx/default.template
+
+COPY docker/nginx/docker-entrypoint.sh /

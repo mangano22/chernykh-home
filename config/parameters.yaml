@@ -1,0 +1,15 @@
+parameters:
+    database_driver: pdo_pgsql
+    database_port: 5434
+    database_server_version: "%env(DB_VERSION)%"
+    database_password: "%env(DB_PASSWORD)%"
+    database_host: "%env(DB_HOST)%"
+    database_name: "%env(DB_NAME)%"
+    database_user: "%env(DB_USER)%"
+
+    #defaults
+    env(DB_HOST): 127.0.0.1
+    env(DB_NAME): project
+    env(DB_USER): roman
+    env(DB_PASSWORD): chernykh
+    env(DB_VERSION): 12
