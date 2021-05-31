@@ -1,3 +1,8 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+api_check:
+    path: api/check
+    controller: App\Controller\ApiController::getCheckAction
+    methods: [ POST ]
