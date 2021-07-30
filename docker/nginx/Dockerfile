@@ -1,3 +1,4 @@
-FROM nginx
+FROM nginx:1.20-alpine
 
-COPY docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx/default.template /etc/nginx/
+COPY docker/nginx/docker-entrypoint.sh /

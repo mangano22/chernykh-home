@@ -6,16 +6,19 @@ server {
 
   charset utf-8;
   client_max_body_size 256M;
+  root /var/www/public/;
+
+  location /bundles/ {
+  }
 
   location / {
-    root /var/www;
     try_files $uri @php;
   }
 
   location @php {
-    fastcgi_pass backend:9000;
+    fastcgi_pass ${FPM_UPSTREAM};
     include fastcgi_params;
-    fastcgi_param SCRIPT_FILENAME /var/www/public/index.php;
+    fastcgi_param SCRIPT_FILENAME ${APP_ENTRYPOINT};
     fastcgi_param PATH_INFO $uri;
     fastcgi_read_timeout 300s;
     client_body_buffer_size 128k;
