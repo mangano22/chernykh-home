@@ -8,10 +8,10 @@ services:
       - .:/var/www
     links:
       - db
-    entrypoint:
-      DB_DRIVER: pgsql
+    environment:
+      APP_ENV: dev
       DB_HOST: db
-      DB_NAME: project
+      DB_NAME: postgres
       DB_USER: roman
       DB_PASSWORD: chernykh
 
@@ -23,14 +23,16 @@ services:
       - 81:80
     links:
       - backend
+    volumes:
+      - ./public:/var/www/public
     environment:
-      - FPM_UPSTREAM=backend:9000
-      - APP_ENTRYPOINT=/var/www/public/index.php
+      FPM_UPSTREAM: backend:9000
+      APP_ENTRYPOINT: /var/www/public/index.php
 
   db:
     image: postgres:12-alpine
     ports:
       - 5434:5432
     environment:
-      - POSTGRES_USER=roman
-      - POSTGRES_PASSWORD=chernykh
+      POSTGRES_USER: roman
+      POSTGRES_PASSWORD: chernykh
